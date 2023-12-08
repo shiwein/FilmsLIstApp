@@ -1,64 +1,57 @@
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {createMoviesThunk, deleteMovieThunk, findAllMoviesThunk} from "./movies-thunks";
-import {userLikesMovieThunk} from "../likes/likes-thunks";
-import {profileThunk} from "../users/users-thunks";
+import React, { useState, useEffect } from "react";
+import { fetchTrendingMovies } from "./moviesClient";
+import MovieGrid from "../common/MovieGrid";
 
 const Movies = () => {
-    const {currentUser} = useSelector((state) => state.users)
-    const {movies} = useSelector((state) => state.movies)
-    const [movie, setMovie] = useState({title: 'New Movie'})
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(findAllMoviesThunk())
-        dispatch(profileThunk())
-    }, [])
-    return(
-        <>
-            <h1>Movies</h1>
-            {
-                currentUser &&
-                <h2>Welcome {currentUser.username}</h2>
-            }
-            <ul className="list-group">
-                <li className="list-group-item">
-                    <button className="btn btn-success float-end" onClick={() => {
-                        dispatch(createMoviesThunk(
-                            {
-                                title: movie.title
-                            }
-                        ))
-                    }}>Create</button>
-                    <input
-                        className="form-control w-75"
-                        onChange={(e) =>
-                            setMovie({...movie, title: e.target.value})}
-                        value={movie.title}/>
-                </li>
-                {
-                    movies.map((movie) =>
-                        <li className="list-group-item"
-                            key={movie._id}>
-                            <i onClick={() => {
-                                dispatch(deleteMovieThunk(movie._id))
-                            }}
-                                className="bi bi-trash float-end"></i>
+  // TODO: FETCH CURRENT USER
+  const currentUser = undefined;
 
-                            <i onClick={() => {
-                                dispatch(userLikesMovieThunk({
-                                    uid: 111, mid: movie.imdbID
-                                }))
-                            }} className="float-end bi bi-hand-thumbs-up me-2"></i>
-                            <i className="float-end bi bi-hand-thumbs-down me-2"></i>
+  const getTrendingMovies = async () => {
+    try {
+      const results = await fetchTrendingMovies();
+      setTrendingMovies(results);
+      console.log(results);
+    } catch (error) {
+      // TODO: ERROR HANDLING
+    }
+  };
 
+  // TODO: FETCH FAVORITE MOVIES
+  const getFavoriteMovies = async (user) => {};
 
-                            {movie.title}
-                        </li>
-                    )
-                }
-            </ul>
-        </>
-    )
-}
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
+
+  useEffect(() => {
+    getTrendingMovies();
+
+    if (currentUser) {
+      getFavoriteMovies(currentUser);
+    }
+  }, [currentUser]);
+
+  const favoritesFallback = (
+    <div className="d-flex justify-content-center font-color-secondary">
+      You haven't added any favorite movies ¯\_(ツ)_/¯
+    </div>
+  );
+
+  return (
+    <>
+      {currentUser && (
+        <div className="mt-5">
+          <MovieGrid
+            title={"My Favorites"}
+            movies={favoriteMovies}
+            fallbackContent={favoritesFallback}
+          />
+        </div>
+      )}
+      <div className="mt-5">
+        {<MovieGrid title={"Trending This Week"} movies={trendingMovies} />}
+      </div>
+    </>
+  );
+};
 
 export default Movies;
