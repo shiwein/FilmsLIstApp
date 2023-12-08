@@ -9,37 +9,36 @@ const usersReducer = createSlice({
         currentUser: null,
         error: null
     },
-    reducers: {
+    extraReducers: (builder) => {
+        builder
+            .addCase(findAllUsersThunk.fulfilled, (state, action) => {
+                state.users = action.payload;
+            })
+            .addCase(loginThunk.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
+            })
+            .addCase(loginThunk.rejected, (state, action) => {
+                state.error = action.error;
+                state.currentUser = null;
+            })
+            .addCase(registerThunk.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
+            })
+            .addCase(registerThunk.rejected, (state, action) => {
+                state.error = action.error;
+                state.currentUser = null;
+            })
+            .addCase(logoutThunk.fulfilled, (state) => {
+                state.currentUser = null;
+            })
+            .addCase(profileThunk.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
+            })
+            .addCase(profileThunk.rejected, (state, action) => {
+                state.error = action.error;
+                state.currentUser = null;
+            });
     },
-    extraReducers: {
-        [findAllUsersThunk.fulfilled]: (state, action) => {
-            state.users = action.payload
-        },
-        [loginThunk.fulfilled]: (state, action) => {
-            state.currentUser = action.payload
-        },
-        [loginThunk.rejected]: (state, action) => {
-            state.error = action.payload
-            state.currentUser = null
-        },
-        [registerThunk.fulfilled]: (state, action) => {
-            state.currentUser = action.payload
-        },
-        [registerThunk.rejected]: (state, action) => {
-            state.error = action.payload
-            state.currentUser = null
-        },
-        [logoutThunk.fulfilled]: (state, action) => {
-            state.currentUser = null
-        },
-        [profileThunk.fulfilled]: (state, action) => {
-            state.currentUser = action.payload
-        },
-        [profileThunk.rejected]: (state, action) => {
-            state.error = action.payload
-            state.currentUser = null
-        },
-    }
-})
+});
 
-export default usersReducer.reducer
+export default usersReducer.reducer;

@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {loginThunk, registerThunk} from "./users-thunks";
 
 const Login = () => {
-    const [username, setUsername] = useState('dan')
-    const [password, setPassword] = useState('dan123')
+    const [username, setUsername] = useState('Username')
+    const [password, setPassword] = useState('Password')
     const [error, setError] = useState(null)
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
@@ -43,4 +43,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;

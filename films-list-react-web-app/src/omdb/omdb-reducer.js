@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findMovieBySearchTerm} from "./omdb-service";
 import {findMovieBySearchTermThunk} from "./omdb-thunks";
 
 const initialState = {
@@ -10,11 +9,14 @@ const initialState = {
 const omdbReducer = createSlice({
     name: 'omdb',
     initialState,
-    extraReducers: {
-        [findMovieBySearchTermThunk.fulfilled]: (state, action) => {
-            state.movies = action.payload
-        }
+    reducers: {
+        // 同步的 reducer 可以在这里定义
+    },
+    extraReducers: (builder) => {
+        builder.addCase(findMovieBySearchTermThunk.fulfilled, (state, action) => {
+            state.movies = action.payload;
+        });
     }
-})
+});
 
-export default omdbReducer.reducer
+export default omdbReducer.reducer;

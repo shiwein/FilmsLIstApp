@@ -3,9 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 
 const Register = () => {
-    const [username, setUsername] = useState('dan')
-    const [password, setPassword] = useState('dan123')
-    const [validatePassword, setValidatePassword] = useState('dan123')
+    const [username, setUsername] = useState('Enter Username')
+    const [password, setPassword] = useState('Enter New Password')
+    const [validatePassword, setValidatePassword] = useState('Confirm Your Password')
     const [error, setError] = useState(null)
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()

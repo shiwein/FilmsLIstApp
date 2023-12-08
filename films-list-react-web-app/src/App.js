@@ -4,7 +4,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import omdbReducer from "./omdb/omdb-reducer";
 import OmdbSearch from "./omdb/omdb-search";
-import {likesReducer} from "./likes/likes-reducer";
+import {likesSlice} from "./likes/likes-reducer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {Routes, Route} from "react-router";
@@ -21,7 +21,7 @@ const store = configureStore({
     reducer: {
         movies: moviesReducer,
         omdb: omdbReducer,
-        likes: likesReducer,
+        likes: likesSlice.reducer,
         users: usersReducer
     }
 })
