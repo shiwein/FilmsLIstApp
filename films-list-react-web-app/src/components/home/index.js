@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { fetchTrendingMovies } from "./moviesClient";
-import MovieGrid from "../common/MovieGrid";
+import { fetchTrendingMovies } from "../../services/movieService";
+import MovieGrid from "../movies/MovieGrid";
 
-const Movies = () => {
+const Home = () => {
   // TODO: FETCH CURRENT USER
   const currentUser = undefined;
 
@@ -54,4 +54,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default Home;

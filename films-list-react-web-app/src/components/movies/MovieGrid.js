@@ -1,6 +1,6 @@
 import React from "react";
 import MovieTile from "./MovieTile";
-import { TMDB_POSTER_URL_PREFIX, formatDate } from "../common/utils";
+import { TMDB_POSTER_URL_PREFIX, formatDate } from "../../utils/utils";
 
 const MovieGrid = ({
   title,

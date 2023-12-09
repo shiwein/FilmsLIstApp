@@ -23,6 +23,12 @@ body {
   color: var(--highlighted-text-color);
 }
 
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--highlighted-text-color) !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25) !important;
+}
+
 .film-list-nav {
   border: none;
 }
@@ -75,5 +81,16 @@ body {
 
 .search-form .search-subfield {
   color: var(--secondary-text-color);
+  font-size: 0.8rem;
+}
+
+.login-form {
+  background-color: var(--secondary-background-color);
+  padding: 10%;
+  font-weight: bold;
+  color: var(--primary-text-color);
+}
+
+.login-form .form-label {
   font-size: 0.8rem;
 }

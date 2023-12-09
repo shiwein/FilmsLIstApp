@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { MOVIE_GENRE_OPTIONS } from "../common/utils";
-import MovieGrid from "../common/MovieGrid";
-import { fetchTrendingMovies } from "../Movies/moviesClient";
+import { MOVIE_GENRE_OPTIONS } from "../../utils/utils";
+import MovieGrid from "../movies/MovieGrid";
+import { fetchTrendingMovies } from "../../services/movieService";
 
 const Search = () => {
   const [filters, setFilters] = useState({});
