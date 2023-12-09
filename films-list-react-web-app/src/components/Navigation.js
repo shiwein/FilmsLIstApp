@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
-//import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logoutThunk } from "../redux/users/userThunks";
 
 const Navigation = () => {
-  // TODO: FETCH CURRENT USER
-  //const { currentUser } = useSelector((state) => state.users);
-  const currentUser = undefined;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const { currentUser } = useSelector((state) => state.user);
   const { pathname } = useLocation();
 
   const screens = ["Home", "Search"];
@@ -16,6 +18,11 @@ const Navigation = () => {
   } else {
     screens.push("Profile");
   }
+
+  const handleLogout = () => {
+    dispatch(logoutThunk());
+    navigate("/Home");
+  };
 
   return (
     <nav className="nav nav-tabs film-list-nav font-lg">
@@ -30,7 +37,7 @@ const Navigation = () => {
       ))}
       {currentUser && (
         // TODO: SIGN OUT
-        <button className="nav-link ms-auto">
+        <button className="nav-link ms-auto" onClick={handleLogout}>
           <i class="bi bi-arrow-bar-right"></i>
         </button>
       )}

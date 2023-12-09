@@ -1,4 +1,4 @@
-export const TMDB_POSTER_URL_PREFIX = "https://image.tmdb.org/t/p/w500/";
+export const TMDB_POSTER_URL_PREFIX = "https://image.tmdb.org/t/p/w500";
 
 export const MOVIE_GENRE_OPTIONS = {
   Action: 28,
