@@ -1,0 +1,96 @@
+:root {
+  --primary-background-color: black;
+  --secondary-background-color: #15181e;
+  --primary-text-color: white;
+  --secondary-text-color: #e3dede;
+  --highlighted-text-color: #e71d36;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--primary-background-color);
+}
+
+.font-color-primary {
+  color: var(--primary-text-color);
+}
+
+.font-color-secondary {
+  color: var(--secondary-text-color);
+}
+
+.font-color-highlighted {
+  color: var(--highlighted-text-color);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--highlighted-text-color) !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25) !important;
+}
+
+.film-list-nav {
+  border: none;
+}
+
+.film-list-nav .nav-link {
+  font-weight: bold;
+  color: var(--primary-text-color);
+  border: none;
+}
+
+.film-list-nav .nav-link.active {
+  color: var(--highlighted-text-color);
+  background-color: var(--primary-background-color);
+}
+
+.movie-tile {
+  background-color: var(--primary-background-color);
+}
+
+.movie-tile img {
+  border-radius: 5px;
+}
+
+.movie-tile .card-title {
+  color: var(--primary-text-color);
+  font-size: clamp(12px, 1.2vw, 20px);
+  font-weight: bold;
+}
+
+.movie-tile .card-text {
+  color: var(--secondary-text-color);
+  font-size: clamp(12px, 1.1vw, 18px);
+}
+
+.movie-grid-title {
+  font-weight: bold;
+  color: var(--primary-text-color);
+  font-size: 1.8rem;
+}
+
+.search-form {
+  background-color: var(--secondary-background-color);
+}
+
+.search-form .search-field {
+  color: var(--primary-text-color);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.search-form .search-subfield {
+  color: var(--secondary-text-color);
+  font-size: 0.8rem;
+}
+
+.login-form {
+  background-color: var(--secondary-background-color);
+  padding: 10%;
+  font-weight: bold;
+  color: var(--primary-text-color);
+}
+
+.login-form .form-label {
+  font-size: 0.8rem;
+}

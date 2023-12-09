@@ -1,51 +1,42 @@
-import Movies from "./movies";
-import moviesReducer from "./movies/movies-reducer";
-import {configureStore} from "@reduxjs/toolkit";
-import {Provider} from "react-redux";
-import omdbReducer from "./omdb/omdb-reducer";
-import OmdbSearch from "./omdb/omdb-search";
-import {likesSlice} from "./likes/likes-reducer";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import {Routes, Route} from "react-router";
-import {BrowserRouter} from "react-router-dom";
-import Navigation from "./navigation";
-import UserList from "./users";
-import usersReducer from "./users/users-reducer";
-import Register from "./users/register";
-import Login from "./users/login";
-import Profile from "./users/profile";
-import CurrentUser from "./users/current-user";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./styles/global.css";
+import { Routes, Route } from "react-router";
+import { HashRouter } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import Search from "./components/search";
+import Home from "./components/home";
+import Login from "./components/users/Login";
+import Register from "./components/users/Register";
 
-const store = configureStore({
-    reducer: {
-        movies: moviesReducer,
-        omdb: omdbReducer,
-        likes: likesSlice.reducer,
-        users: usersReducer
-    }
-})
+//TODO: CREATE A SEPARATE FILE FOR THE STORE
+// const store = configureStore({
+//   reducer: {
+//     movies: moviesReducer,
+//     omdb: omdbReducer,
+//     likes: likesReducer,
+//     users: usersReducer,
+//   },
+// });
 
 function App() {
-    return (
-        <div className="container mt-4 mb-4">
-            <Provider store={store}>
-                <CurrentUser>
-                    <BrowserRouter>
-                        <Navigation/>
-                        <Routes>
-                            <Route index element={<Movies/>}/>
-                            <Route path="/search" element={<OmdbSearch/>}/>
-                            <Route path="/users" element={<UserList/>}/>
-                            <Route path="/register" element={<Register/>}/>
-                            <Route path="/login" element={<Login/>}/>
-                            <Route path="/profile" element={<Profile/>}/>
-                        </Routes>
-                    </BrowserRouter>
-                </CurrentUser>
-            </Provider>
+  return (
+    <HashRouter>
+      <div className="ps-4 pe-4 pt-2">
+        <div>
+          <Navigation />
+          <Routes>
+            {/* TODO: NAVIGATE TO THE HOME PAGE BY DEFAULT */}
+            <Route path="/Home" element={<Home />} />
+            <Route path="/Search" element={<Search />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
+          </Routes>
         </div>
-    );
+      </div>
+    </HashRouter>
+  );
 }
 
 export default App;
