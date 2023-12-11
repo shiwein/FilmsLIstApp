@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { fetchTrendingMovies } from "../../services/movieService";
 import MovieGrid from "../movies/MovieGrid";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   // TODO: FETCH CURRENT USER
-  const currentUser = undefined;
+  const { currentUser } = useSelector((state) => state.user);
 
   const getTrendingMovies = async () => {
     try {

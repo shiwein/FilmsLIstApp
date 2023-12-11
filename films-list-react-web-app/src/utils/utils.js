@@ -1,3 +1,5 @@
+import languages from "./languages.json";
+
 export const TMDB_POSTER_URL_PREFIX = "https://image.tmdb.org/t/p/w500";
 
 export const MOVIE_GENRE_OPTIONS = {
@@ -22,7 +24,28 @@ export const MOVIE_GENRE_OPTIONS = {
   Western: 37,
 };
 
+export const LANGUAGES = languages;
+
 export const formatDate = (dateString) => {
   const options = { year: "numeric", month: "short", day: "numeric" };
   return new Date(dateString).toLocaleDateString("en-US", options);
+};
+
+export const isoToLanguageName = (isoCode) => {
+  const language = languages.find((lang) => lang.iso_639_1 === isoCode);
+  return language ? language.english_name : null;
+};
+
+export const languageNameToIso = (languageName) => {
+  const language = languages.find((lang) => lang.english_name === languageName);
+  return language ? language.iso_639_1 : null;
+};
+
+export const filterEmptyParams = (params) => {
+  return Object.entries(params).reduce((acc, [key, value]) => {
+    if (value) {
+      acc[key] = value;
+    }
+    return acc;
+  }, {});
 };
