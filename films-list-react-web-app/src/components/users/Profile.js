@@ -5,6 +5,7 @@ import {
   getMovieDetailsById,
 } from "../../services/userService";
 
+
 const Profile = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [user, setUser] = useState({
