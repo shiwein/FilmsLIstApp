@@ -4,7 +4,8 @@ const request = axios.create({
   withCredentials: true,
 });
 
-const API_BASE = "http://localhost:4000";
+// const API_BASE = "http://localhost:4000";
+const API_BASE = process.env.REACT_APP_API_BASE;
 
 export const login = async (credentials) => {
   try {
@@ -59,26 +60,3 @@ export const getMovieDetailsById = async (movieId) => {
   }
   return response.json();
 };
-
-const updateUser = async (userId, userData) => {
-  try {
-    const response = await fetch(`${API_BASE}/api/users/${userId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    return response.json();
-  } catch (error) {
-    console.error('Error updating user:', error);
-    throw error;
-  }
-};
-
-export { updateUser };
