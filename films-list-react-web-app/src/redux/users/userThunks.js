@@ -15,3 +15,4 @@ export const logoutThunk = createAsyncThunk(
   "logout",
   async () => await logout()
 );
+

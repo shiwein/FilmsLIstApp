@@ -4,6 +4,7 @@ const request = axios.create({
   withCredentials: true,
 });
 
+// const API_BASE = "http://localhost:4000";
 const API_BASE = process.env.REACT_APP_API_BASE;
 
 export const login = async (credentials) => {
@@ -42,4 +43,20 @@ export const register = async (credentials) => {
 export const logout = async () => {
   const response = await request.post(`${API_BASE}/api/logout`);
   return response.data;
+};
+
+export const findReviewsByAuthor = async (authorId) => {
+  const response = await fetch(`${API_BASE}/api/users/${authorId}/reviews`);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+};
+
+export const getMovieDetailsById = async (movieId) => {
+  const response = await fetch(`${API_BASE}/api/movie/${movieId}`);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
 };
