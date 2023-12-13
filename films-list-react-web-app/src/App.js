@@ -11,6 +11,7 @@ import Login from "./components/users/Login";
 import Register from "./components/users/Register";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import Profile from "./components/users/Profile";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="/Search" element={<Search />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/Register" element={<Register />} />
+              <Route path="/Profile" element={<Profile />} />
             </Routes>
           </div>
         </div>
