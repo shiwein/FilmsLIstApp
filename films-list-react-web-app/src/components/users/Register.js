@@ -12,6 +12,7 @@ const Register = () => {
 
   const [credentials, setCredentials] = useState({
     username: "",
+    email:"",
     password: "",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -34,6 +35,22 @@ const Register = () => {
       <div className="col-12 col-md-6">
         <div className="card login-form">
           <div className="login-form-title"> Create Your Account</div>
+          <div className="mt-4">
+            <label className="form-label" htmlFor="username">
+              EMAIL
+            </label>
+            <input
+              className="form-control"
+              id="email"
+              value={credentials.email}
+              onChange={(e) =>
+                setCredentials({
+                  ...credentials,
+                  email: e.target.value,
+                })
+              }
+            />
+          </div>
           <div className="mt-4">
             <label className="form-label" htmlFor="username">
               USERNAME
