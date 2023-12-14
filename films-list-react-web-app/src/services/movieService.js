@@ -3,7 +3,58 @@ import { filterEmptyParams } from "../utils/utils";
 
 // TODO: CONFIG AS ENVIRONMENT VARIABLE
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+const REACT_APP_API_BASE = process.env.REACT_APP_API_BASE;
 const TMDB_API_BASE = "https://api.themoviedb.org/3";
+
+export const getRecommendedMovies = async (movieId) => {
+  try {
+    const response = await axios.get(
+      `${TMDB_API_BASE}/movie/${movieId}/recommendations?api_key=${TMDB_API_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error retrieving recommendations: ", error);
+    throw error;
+  }
+};
+
+export const postMovieReview = async ({ newReview, movieId, userId }) => {
+  try {
+    const response = await axios.post(`${REACT_APP_API_BASE}/api/reviews`, {
+      review: newReview,
+      movieId: movieId,
+      author: userId,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error submitting reviews: ", error);
+    throw error;
+  }
+};
+
+export const getReviewsByMovie = async (movieId) => {
+  try {
+    const response = await axios.get(
+      `${REACT_APP_API_BASE}/api/movies/${movieId}/reviews`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error retrieving movie reviews: ", error);
+    throw error;
+  }
+};
+
+export const getMovieDetailsById = async (movieId) => {
+  try {
+    const response = await axios.get(
+      `${REACT_APP_API_BASE}/api/movie/${movieId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error retrieving movie details: ", error);
+    throw error;
+  }
+};
 
 export const fetchTrendingMovies = async () => {
   try {

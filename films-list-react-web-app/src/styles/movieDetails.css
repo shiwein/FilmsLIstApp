@@ -1,0 +1,20 @@
+.movie-detail {
+  color: white;
+}
+
+.movie-detail .movie-detail-title {
+  font-weight: bold;
+}
+
+.movie-detail .movie-detail-tagline {
+  color: grey;
+  font-style: italic;
+}
+
+.heart-icon {
+  cursor: pointer;
+}
+
+.heart-icon:hover {
+  transform: scale(1.4);
+}
