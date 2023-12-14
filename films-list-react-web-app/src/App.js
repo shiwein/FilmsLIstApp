@@ -12,6 +12,7 @@ import Register from "./components/users/Register";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import Profile from "./components/users/Profile";
+import MovieDetailsPage from "./components/movies/MovieDetails";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="/Login" element={<Login />} />
               <Route path="/Register" element={<Register />} />
               <Route path="/Profile" element={<Profile />} />
+              <Route path="/details/:movieId" element={<MovieDetailsPage />} />
             </Routes>
           </div>
         </div>
