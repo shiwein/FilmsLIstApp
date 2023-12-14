@@ -26,6 +26,17 @@ export const MOVIE_GENRE_OPTIONS = {
 
 export const LANGUAGES = languages;
 
+export const formateRuntime = (runtime) => {
+  if (isNaN(runtime) || runtime < 0) {
+    return "Invalid runtime";
+  }
+  const hours = Math.floor(runtime / 60);
+  const minutes = runtime % 60;
+
+  const formattedRuntime = `${hours > 0 ? hours + "h" : ""} ${minutes > 0 ? minutes + "m" : ""}`
+  return formattedRuntime.trim();
+}
+
 export const formatDate = (dateString) => {
   const options = { year: "numeric", month: "short", day: "numeric" };
   return new Date(dateString).toLocaleDateString("en-US", options);

@@ -48,7 +48,7 @@ export const logout = async () => {
 export const findReviewsByAuthor = async (authorId) => {
   const response = await fetch(`${API_BASE}/api/users/${authorId}/reviews`);
   if (!response.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error("Network response was not ok");
   }
   return response.json();
 };
@@ -56,7 +56,33 @@ export const findReviewsByAuthor = async (authorId) => {
 export const getMovieDetailsById = async (movieId) => {
   const response = await fetch(`${API_BASE}/api/movie/${movieId}`);
   if (!response.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error("Network response was not ok");
   }
   return response.json();
 };
+
+export const addFavoriteMovie = async (userId, movieId) => {
+  try {
+    const response = await request.post(
+      `${API_BASE}/api/users/${userId}/favoriteMovies`,
+      { movieId: movieId }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error while adding movie to favorites: ", error);
+    throw error;
+  }
+};
+
+export const deleteFavoriteMovie = async (userId, movieId) => {
+  try {
+    const response = await request.delete(
+      `${API_BASE}/api/users/${userId}/favoriteMovies`,
+      { data: {movieId: movieId} }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error while deleting movie to favorites: ", error);
+    throw error;
+  }
+}
