@@ -7,6 +7,16 @@ const request = axios.create({
 // const API_BASE = "http://localhost:4000";
 const API_BASE = process.env.REACT_APP_API_BASE;
 
+export const updateUserById = async (userId, user) => {
+  try {
+    const response = await request.put(`${API_BASE}/api/users/${userId}`, user);
+    return response.data;
+  } catch (error) {
+    console.error("Error while updating user: ", error);
+    throw error;
+  }
+};
+
 export const login = async (credentials) => {
   try {
     const response = await request.post(`${API_BASE}/api/login`, credentials);
@@ -78,7 +88,7 @@ export const deleteFavoriteMovie = async (userId, movieId) => {
   try {
     const response = await request.delete(
       `${API_BASE}/api/users/${userId}/favoriteMovies`,
-      { data: {movieId: movieId} }
+      { data: { movieId: movieId } }
     );
     return response.data;
   } catch (error) {

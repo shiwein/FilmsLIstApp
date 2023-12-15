@@ -16,7 +16,7 @@ const Navigation = () => {
     screens.push("Login");
     screens.push("Register");
   } else {
-    screens.push(`Profile/${currentUser._id}`);
+    screens.push(`Profile`);
   }
 
   const handleLogout = () => {
@@ -28,7 +28,9 @@ const Navigation = () => {
     <nav className="nav nav-tabs film-list-nav font-lg">
       {screens.map((screen) => (
         <Link
-          to={`/${screen}`}
+          to={
+            screen === "Profile" ? `/${screen}/${currentUser._id}` : `${screen}`
+          }
           key={`link-${screen}`}
           className={`nav-link ${pathname.includes(screen) ? "active" : ""}`}
         >

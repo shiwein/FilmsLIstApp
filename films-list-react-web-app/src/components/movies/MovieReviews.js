@@ -4,7 +4,7 @@ import {
   postMovieReview,
 } from "../../services/movieService";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MovieReviews = ({ movieId }) => {
   const navigate = useNavigate();
@@ -75,7 +75,10 @@ const MovieReviews = ({ movieId }) => {
             className="mb-3 list-group-item list-group-item-dark"
           >
             <p>
-              <strong>{review.author.username}</strong> says:
+              <Link to={`/Profile/${review.author._id}`}>
+                <strong>{review.author.username}</strong>
+              </Link>{" "}
+              says:
             </p>
             <p>{review.review}</p>
           </li>
