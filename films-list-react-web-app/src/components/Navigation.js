@@ -16,7 +16,7 @@ const Navigation = () => {
     screens.push("Login");
     screens.push("Register");
   } else {
-    screens.push("Profile");
+    screens.push(`Profile/${currentUser._id}`);
   }
 
   const handleLogout = () => {

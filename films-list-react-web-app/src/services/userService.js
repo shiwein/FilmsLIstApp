@@ -85,4 +85,12 @@ export const deleteFavoriteMovie = async (userId, movieId) => {
     console.error("Error while deleting movie to favorites: ", error);
     throw error;
   }
-}
+};
+
+export const findUserById = async (userId) => {
+  const response = await fetch(`${API_BASE}/api/users/${userId}`);
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+};

@@ -27,7 +27,8 @@ function App() {
               <Route path="/Search" element={<Search />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/Register" element={<Register />} />
-              <Route path="/Profile" element={<Profile />} />
+              {/* <Route path="/Profile" element={<Profile />} /> */}
+              <Route path="/Profile/:userId" element={<Profile />} />
               <Route path="/details/:movieId" element={<MovieDetailsPage />} />
             </Routes>
           </div>
